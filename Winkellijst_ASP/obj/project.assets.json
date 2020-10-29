@@ -2470,7 +2470,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
+      "sha512": "NoPBj0ykejqAWW4p4gGtrrL+3c84ZLSvGnHgq422ew1Rj4WKj1FA8/BCybqC111EtgcqUl6ZJNFYYS22HLgbjA==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -2655,7 +2655,7 @@
       ]
     },
     "System.ComponentModel.Primitives/4.3.0": {
-      "sha512": "j8GUkCpM8V4d4vhLIIoBLGey2Z5bCkMVNjEZseyAlm4n5arcsJOeI3zkUP+zvZgzsbLTYh4lYeP/ZD/gdIAPrw==",
+      "sha512": "KMVuoQ+8bMQ/Z59M3s64num5AD74X5YSqVc7ibwGkPTfmmkl2W8VuSxLRJtpw4KzQrSKUgR0BLbF0adPfcTSGQ==",
       "type": "package",
       "path": "system.componentmodel.primitives/4.3.0",
       "files": [
@@ -5668,24 +5668,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Eigenaar\\.nuget\\packages\\": {},
+    "C:\\Users\\lieve\\.nuget\\packages\\": {},
+    "D:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
+      "projectUniqueName": "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
       "projectName": "Winkellijst_ASP",
-      "projectPath": "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
-      "packagesPath": "C:\\Users\\Eigenaar\\.nuget\\packages\\",
-      "outputPath": "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\obj\\",
+      "projectPath": "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
+      "packagesPath": "C:\\Users\\lieve\\.nuget\\packages\\",
+      "outputPath": "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "D:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Eigenaar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\lieve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

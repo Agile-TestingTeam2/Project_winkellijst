@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj": {}
+    "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj": {}
   },
   "projects": {
-    "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj": {
+    "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
+        "projectUniqueName": "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
         "projectName": "Winkellijst_ASP",
-        "projectPath": "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
-        "packagesPath": "C:\\Users\\Eigenaar\\.nuget\\packages\\",
-        "outputPath": "F:\\S20202021GTI_GPR_d2_1\\Agile&Testing\\Project\\Project_winkellijst\\Winkellijst_ASP\\obj\\",
+        "projectPath": "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\Winkellijst_ASP.csproj",
+        "packagesPath": "C:\\Users\\lieve\\.nuget\\packages\\",
+        "outputPath": "F:\\2de jaar programmeren\\Agile en testing\\Project_winkellijst\\Winkellijst_ASP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "D:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Eigenaar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\lieve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
