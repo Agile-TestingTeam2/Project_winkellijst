@@ -1,0 +1,76 @@
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\appsettings.Development.json
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\appsettings.json
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.exe
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.deps.json
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.runtimeconfig.json
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.runtimeconfig.dev.json
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.dll
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.pdb
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.Views.dll
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.Views.pdb
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.csprojAssemblyReference.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.AssemblyInfoInputs.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.AssemblyInfo.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.csproj.CoreCompileInputs.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.MvcApplicationPartsAssemblyInfo.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorAssemblyInfo.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorAssemblyInfo.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.TagHelpers.input.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.TagHelpers.output.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorCoreGenerate.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorTargetAssemblyInfo.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorTargetAssemblyInfo.cs
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.Views.pdb
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\staticwebassets\Winkellijst_ASP.StaticWebAssets.Manifest.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\staticwebassets\Winkellijst_ASP.StaticWebAssets.xml
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.dll
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.pdb
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.genruntimeconfig.cache
+F:\2de jaar programmeren\Agile en testing\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.csproj.CopyComplete
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.exe
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.deps.json
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.runtimeconfig.json
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.runtimeconfig.dev.json
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.dll
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.pdb
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.Views.dll
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\bin\Debug\netcoreapp3.1\Winkellijst_ASP.Views.pdb
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.AssemblyInfoInputs.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.AssemblyInfo.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.csproj.CoreCompileInputs.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorAssemblyInfo.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorAssemblyInfo.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.TagHelpers.input.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.TagHelpers.output.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorCoreGenerate.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorTargetAssemblyInfo.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.RazorTargetAssemblyInfo.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.Views.pdb
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\staticwebassets\Winkellijst_ASP.StaticWebAssets.Manifest.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\staticwebassets\Winkellijst_ASP.StaticWebAssets.xml
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.dll
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.pdb
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.genruntimeconfig.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.csproj.CopyComplete
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Winkellijst_ASP.csprojAssemblyReference.cache
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Registreer\Index.cshtml.g.cs
+C:\Users\stijn\source\agile\Project_winkellijst\Winkellijst_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Winkellijst\Index.cshtml.g.cs
