@@ -13,11 +13,7 @@ namespace Winkellijst_ASP.Models
         public string Straat { get; set; }
         public string Huisnummer { get; set; }
         public string Stad { get; set; }
-<<<<<<< HEAD
-        public ICollection<AfdelingWinkel> AfdelingWinkels { get; set; }
-=======
         public ICollection<Afdeling> Afdelingen{ get; set; }
->>>>>>> develop
         public ICollection<WinkelLijst> WinkelLijsten { get; set; }
 
     }
