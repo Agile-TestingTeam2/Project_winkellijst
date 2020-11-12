@@ -28,6 +28,11 @@ namespace Winkellijst_ASP.Controllers
             return View();
         }
 
+        /*public IActionResult Mailing()
+        {
+            return View()
+        }
+*/
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
