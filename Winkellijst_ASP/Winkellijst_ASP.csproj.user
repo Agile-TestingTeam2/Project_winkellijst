@@ -11,4 +11,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <ActiveDebugProfile>Winkellijst_ASP</ActiveDebugProfile>
+  </PropertyGroup>
 </Project>
