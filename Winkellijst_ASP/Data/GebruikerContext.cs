@@ -22,6 +22,10 @@ namespace Winkellijst_ASP.Data
         public DbSet<WinkelLijst> WinkelLijsten { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("Winkellijst");
+
+            base.OnModelCreating(modelBuilder);
+
             #region Gebruiker
             modelBuilder.Entity<Gebruiker>()
                 .ToTable("Gebruiker")
