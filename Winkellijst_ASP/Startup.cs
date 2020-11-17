@@ -107,6 +107,7 @@ namespace Winkellijst_ASP
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -115,6 +116,7 @@ namespace Winkellijst_ASP
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
