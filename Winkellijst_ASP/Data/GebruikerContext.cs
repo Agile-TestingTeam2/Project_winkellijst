@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Winkellijst_ASP.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Winkellijst_ASP.Areas.Identity.Data;
 
 namespace Winkellijst_ASP.Data
 {
-    public class GebruikerContext : DbContext
+    public class GebruikerContext : IdentityDbContext<AppGebruiker>
     {
         public GebruikerContext (DbContextOptions<GebruikerContext> options)
             : base(options)
@@ -28,17 +30,7 @@ namespace Winkellijst_ASP.Data
 
             #region Gebruiker
             modelBuilder.Entity<Gebruiker>()
-                .ToTable("Gebruiker")
-                .HasIndex(Gebruiker => Gebruiker.Email)
-                .IsUnique();
-            modelBuilder.Entity<Gebruiker>()
-                .Property(gebruiker => gebruiker.Email)
-                .HasMaxLength(255)
-                .IsRequired();
-            modelBuilder.Entity<Gebruiker>()
-                .Property(gebruiker => gebruiker.Wachtwoord)
-                .HasMaxLength(255)
-                .IsRequired();
+                .ToTable("Gebruiker");
             #endregion
             #region Afdeling
             modelBuilder.Entity<Afdeling>()

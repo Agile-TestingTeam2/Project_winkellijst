@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 
 [assembly: HostingStartup(typeof(Winkellijst_ASP.Areas.Identity.IdentityHostingStartup))]
@@ -18,9 +19,6 @@ namespace Winkellijst_ASP.Areas.Identity
                 services.AddDbContext<GebruikerContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("GebruikersContextConnection")));
-
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<GebruikerContext>();
             });
         }
     }

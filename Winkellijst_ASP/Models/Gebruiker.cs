@@ -10,10 +10,8 @@ namespace Winkellijst_ASP.Models
     public class Gebruiker
     {
         public int GebruikerId { get; set; }
-        public string Email { get; set; }
-        public string Wachtwoord { get; set; }
         [ForeignKey("AppGebruiker")]
-        public int AppGebruikerId { get; set; }
-        public AppGebruiker AppGebruiker { get; set; }
+        public string AppGebruikerId { get; set; }
+        public AppGebruiker AppGebruiker { get;}
     }
 }

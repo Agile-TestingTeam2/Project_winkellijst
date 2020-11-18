@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Winkellijst_ASP.Areas.Identity.Data
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<AppGebruiker> SignInManager
+@inject UserManager<AppGebruiker> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Helpers;
 
@@ -32,6 +34,28 @@ namespace Winkellijst_ASP
             services.AddControllersWithViews();
             services.AddDbContext<GebruikerContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GebruikerConnection")));
+            services.AddDefaultIdentity<AppGebruiker>()
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<GebruikerContext>();
+            services.AddMvc().AddRazorPagesOptions(options => {
+                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+            }).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequiredLength = 4;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.RequireUniqueEmail = true;
+            });
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             // configure jwt authentication
