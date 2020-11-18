@@ -15,12 +15,12 @@ namespace Winkellijst_ASP.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<GebruikersContext>(options =>
+                services.AddDbContext<GebruikerContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("GebruikersContextConnection")));
 
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<GebruikersContext>();
+                    .AddEntityFrameworkStores<GebruikerContext>();
             });
         }
     }
