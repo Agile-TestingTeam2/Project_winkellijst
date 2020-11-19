@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Helpers;
+using Winkellijst_ASP.Services;
 
 namespace Winkellijst_ASP
 {
@@ -88,6 +89,9 @@ namespace Winkellijst_ASP
             //        }
             //    });
             //});
+
+            // configure DI for application services
+            services.AddScoped<IMailService, MailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
