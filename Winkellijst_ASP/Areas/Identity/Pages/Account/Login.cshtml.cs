@@ -71,7 +71,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
         }
-        [HttpPost]
+       
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -83,7 +83,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Paswoord, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("De gebruiker is ingelogd.");
                     return RedirectToAction("Index","Home");
                 }
                 if (result.RequiresTwoFactor)
@@ -92,12 +92,12 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("De gebruiker is geweigerd.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "De inlogpoging is mislukt.");
                     return Page();
                 }
             }
