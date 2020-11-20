@@ -3,18 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Winkellijst_ASP.Migrations
 {
-    public partial class GebruikerContextErftOverVanIdentyDbContext : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "AppGebruikerId",
-                schema: "Winkellijst",
-                table: "Gebruiker",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
+            migrationBuilder.EnsureSchema(
+                name: "Winkellijst");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -55,6 +49,23 @@ namespace Winkellijst_ASP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Winkel",
+                schema: "Winkellijst",
+                columns: table => new
+                {
+                    WinkelId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Winkelnaam = table.Column<string>(maxLength: 255, nullable: false),
+                    Straat = table.Column<string>(maxLength: 255, nullable: false),
+                    Huisnummer = table.Column<string>(maxLength: 12, nullable: false),
+                    Stad = table.Column<string>(maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Winkel", x => x.WinkelId);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,13 +185,107 @@ namespace Winkellijst_ASP.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Gebruiker_AppGebruikerId",
+            migrationBuilder.CreateTable(
+                name: "Gebruiker",
                 schema: "Winkellijst",
-                table: "Gebruiker",
-                column: "AppGebruikerId",
-                unique: true,
-                filter: "[AppGebruikerId] IS NOT NULL");
+                columns: table => new
+                {
+                    GebruikerId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AppGebruikerId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gebruiker", x => x.GebruikerId);
+                    table.ForeignKey(
+                        name: "FK_Gebruiker_AspNetUsers_AppGebruikerId",
+                        column: x => x.AppGebruikerId,
+                        principalSchema: "Winkellijst",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Afdeling",
+                schema: "Winkellijst",
+                columns: table => new
+                {
+                    AfdelingId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naam = table.Column<string>(maxLength: 255, nullable: false),
+                    Volgorde = table.Column<int>(nullable: false),
+                    WinkelId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Afdeling", x => x.AfdelingId);
+                    table.ForeignKey(
+                        name: "FK_Afdeling_Winkel_WinkelId",
+                        column: x => x.WinkelId,
+                        principalSchema: "Winkellijst",
+                        principalTable: "Winkel",
+                        principalColumn: "WinkelId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Boodschappenlijst",
+                schema: "Winkellijst",
+                columns: table => new
+                {
+                    WinkelLijstId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GebruikerId = table.Column<int>(nullable: false),
+                    WinkelId = table.Column<int>(nullable: false),
+                    AanmaakDatum = table.Column<DateTime>(type: "dateTime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Boodschappenlijst", x => x.WinkelLijstId);
+                    table.ForeignKey(
+                        name: "FK_Boodschappenlijst_Gebruiker_GebruikerId",
+                        column: x => x.GebruikerId,
+                        principalSchema: "Winkellijst",
+                        principalTable: "Gebruiker",
+                        principalColumn: "GebruikerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Boodschappenlijst_Winkel_WinkelId",
+                        column: x => x.WinkelId,
+                        principalSchema: "Winkellijst",
+                        principalTable: "Winkel",
+                        principalColumn: "WinkelId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                schema: "Winkellijst",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naam = table.Column<string>(maxLength: 255, nullable: false),
+                    AfdelingId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Product_Afdeling_AfdelingId",
+                        column: x => x.AfdelingId,
+                        principalSchema: "Winkellijst",
+                        principalTable: "Afdeling",
+                        principalColumn: "AfdelingId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Afdeling_WinkelId",
+                schema: "Winkellijst",
+                table: "Afdeling",
+                column: "WinkelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -228,24 +333,42 @@ namespace Winkellijst_ASP.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Gebruiker_AspNetUsers_AppGebruikerId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Boodschappenlijst_GebruikerId",
+                schema: "Winkellijst",
+                table: "Boodschappenlijst",
+                column: "GebruikerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Boodschappenlijst_WinkelId",
+                schema: "Winkellijst",
+                table: "Boodschappenlijst",
+                column: "WinkelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gebruiker_AppGebruikerId",
                 schema: "Winkellijst",
                 table: "Gebruiker",
                 column: "AppGebruikerId",
-                principalSchema: "Winkellijst",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                unique: true,
+                filter: "[AppGebruikerId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_AfdelingId",
+                schema: "Winkellijst",
+                table: "Product",
+                column: "AfdelingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_Naam",
+                schema: "Winkellijst",
+                table: "Product",
+                column: "Naam",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Gebruiker_AspNetUsers_AppGebruikerId",
-                schema: "Winkellijst",
-                table: "Gebruiker");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims",
                 schema: "Winkellijst");
@@ -267,26 +390,32 @@ namespace Winkellijst_ASP.Migrations
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
+                name: "Boodschappenlijst",
+                schema: "Winkellijst");
+
+            migrationBuilder.DropTable(
+                name: "Product",
+                schema: "Winkellijst");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles",
+                schema: "Winkellijst");
+
+            migrationBuilder.DropTable(
+                name: "Gebruiker",
+                schema: "Winkellijst");
+
+            migrationBuilder.DropTable(
+                name: "Afdeling",
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers",
                 schema: "Winkellijst");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Gebruiker_AppGebruikerId",
-                schema: "Winkellijst",
-                table: "Gebruiker");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "AppGebruikerId",
-                schema: "Winkellijst",
-                table: "Gebruiker",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldNullable: true);
+            migrationBuilder.DropTable(
+                name: "Winkel",
+                schema: "Winkellijst");
         }
     }
 }

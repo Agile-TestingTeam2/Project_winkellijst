@@ -343,7 +343,7 @@ namespace Winkellijst_ASP.Migrations
 
                     b.HasIndex("WinkelId");
 
-                    b.ToTable("WinkelLijst");
+                    b.ToTable("Boodschappenlijst");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

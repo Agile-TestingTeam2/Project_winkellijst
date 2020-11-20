@@ -76,7 +76,7 @@ namespace Winkellijst_ASP.Data
             #endregion
             #region WinkelLijst
             modelBuilder.Entity<WinkelLijst>()
-                .ToTable("WinkelLijst")
+                .ToTable("Boodschappenlijst")
                 .Property(winkelLijst => winkelLijst.GebruikerId)
                 .IsRequired();
             modelBuilder.Entity<WinkelLijst>()

@@ -18,7 +18,7 @@ namespace Winkellijst_ASP.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<GebruikerContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("GebruikersContextConnection")));
+                        context.Configuration.GetConnectionString("GebruikerConnection")));
             });
         }
     }

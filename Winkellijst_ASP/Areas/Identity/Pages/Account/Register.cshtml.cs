@@ -100,9 +100,11 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
+                    
 
                     await _emailSender.SendEmailAsync(Input.Email, "Bevestig je e-mail",
                         $"Gelieve je account te bevestigen door <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>hier te klikken</a>.");
+                    
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -111,7 +113,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        return RedirectToAction("Index", "Winkellijst");
                     }
                 }
                 foreach (var error in result.Errors)

@@ -10,8 +10,8 @@ using Winkellijst_ASP.Data;
 namespace Winkellijst_ASP.Migrations
 {
     [DbContext(typeof(GebruikerContext))]
-    [Migration("20201118145159_GebruikerContextErftOverVanIdentyDbContext")]
-    partial class GebruikerContextErftOverVanIdentyDbContext
+    [Migration("20201120143308_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -345,7 +345,7 @@ namespace Winkellijst_ASP.Migrations
 
                     b.HasIndex("WinkelId");
 
-                    b.ToTable("WinkelLijst");
+                    b.ToTable("Boodschappenlijst");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

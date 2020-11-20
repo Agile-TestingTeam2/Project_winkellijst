@@ -84,7 +84,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("De gebruiker is ingelogd.");
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index","Winkellijst");
                 }
                 if (result.RequiresTwoFactor)
                 {
