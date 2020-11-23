@@ -57,7 +57,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "Het {0}-adres moet op z'n minst {2} en maximum {1} karakters lang zijn.", MinimumLength = 4)]
+            [StringLength(100, ErrorMessage = "Het {0} moet op z'n minst {2} en maximum {1} karakters lang zijn.", MinimumLength = 4)]
             [DataType(DataType.Password)]
             [Display(Name = "Wachtwoord")]
             public string Wachtwoord { get; set; }
