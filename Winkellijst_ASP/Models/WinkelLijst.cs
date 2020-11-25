@@ -10,8 +10,8 @@ namespace Winkellijst_ASP.Models
         public int WinkelLijstId { get; set; }
         public int GebruikerId { get; set; }
         public Gebruiker Gebruiker { get; set; }
-        public int WinkelId { get; set; }
-        public Winkel Winkel { get; set; }
         public DateTime AanmaakDatum { get; set; }
+        public List<WinkelLijstProduct> WinkelLijstProducts { get; set; }
+
     }
 }

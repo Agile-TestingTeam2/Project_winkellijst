@@ -10,15 +10,15 @@ using Winkellijst_ASP.Data;
 namespace Winkellijst_ASP.Migrations
 {
     [DbContext(typeof(GebruikerContext))]
-    [Migration("20201120143308_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201125193331_EditedProduct")]
+    partial class EditedProduct
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Winkellijst")
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -276,10 +276,17 @@ namespace Winkellijst_ASP.Migrations
                     b.Property<int>("AfdelingId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Hoeveelheid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Naam")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<decimal>("Prijs")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");
 
@@ -336,16 +343,33 @@ namespace Winkellijst_ASP.Migrations
                     b.Property<int>("GebruikerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("WinkelId")
-                        .HasColumnType("int");
-
                     b.HasKey("WinkelLijstId");
 
                     b.HasIndex("GebruikerId");
 
-                    b.HasIndex("WinkelId");
-
                     b.ToTable("Boodschappenlijst");
+                });
+
+            modelBuilder.Entity("Winkellijst_ASP.Models.WinkelLijstProduct", b =>
+                {
+                    b.Property<int>("WinkelLijstProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WinkelLijstId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WinkelLijstProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("WinkelLijstId");
+
+                    b.ToTable("WinkelLijstProduct");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -431,10 +455,19 @@ namespace Winkellijst_ASP.Migrations
                         .HasForeignKey("GebruikerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.HasOne("Winkellijst_ASP.Models.Winkel", "Winkel")
-                        .WithMany("WinkelLijsten")
-                        .HasForeignKey("WinkelId")
+            modelBuilder.Entity("Winkellijst_ASP.Models.WinkelLijstProduct", b =>
+                {
+                    b.HasOne("Winkellijst_ASP.Models.Product", "Product")
+                        .WithMany("WinkelLijstProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Winkellijst_ASP.Models.WinkelLijst", "WinkelLijst")
+                        .WithMany("WinkelLijstProducts")
+                        .HasForeignKey("WinkelLijstId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -237,7 +237,6 @@ namespace Winkellijst_ASP.Migrations
                     WinkelLijstId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GebruikerId = table.Column<int>(nullable: false),
-                    WinkelId = table.Column<int>(nullable: false),
                     AanmaakDatum = table.Column<DateTime>(type: "dateTime", nullable: false)
                 },
                 constraints: table =>
@@ -249,13 +248,6 @@ namespace Winkellijst_ASP.Migrations
                         principalSchema: "Winkellijst",
                         principalTable: "Gebruiker",
                         principalColumn: "GebruikerId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Boodschappenlijst_Winkel_WinkelId",
-                        column: x => x.WinkelId,
-                        principalSchema: "Winkellijst",
-                        principalTable: "Winkel",
-                        principalColumn: "WinkelId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -278,6 +270,35 @@ namespace Winkellijst_ASP.Migrations
                         principalSchema: "Winkellijst",
                         principalTable: "Afdeling",
                         principalColumn: "AfdelingId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WinkelLijstProduct",
+                schema: "Winkellijst",
+                columns: table => new
+                {
+                    WinkelLijstProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WinkelLijstId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WinkelLijstProduct", x => x.WinkelLijstProductId);
+                    table.ForeignKey(
+                        name: "FK_WinkelLijstProduct_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalSchema: "Winkellijst",
+                        principalTable: "Product",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WinkelLijstProduct_Boodschappenlijst_WinkelLijstId",
+                        column: x => x.WinkelLijstId,
+                        principalSchema: "Winkellijst",
+                        principalTable: "Boodschappenlijst",
+                        principalColumn: "WinkelLijstId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -340,12 +361,6 @@ namespace Winkellijst_ASP.Migrations
                 column: "GebruikerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Boodschappenlijst_WinkelId",
-                schema: "Winkellijst",
-                table: "Boodschappenlijst",
-                column: "WinkelId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Gebruiker_AppGebruikerId",
                 schema: "Winkellijst",
                 table: "Gebruiker",
@@ -365,6 +380,18 @@ namespace Winkellijst_ASP.Migrations
                 table: "Product",
                 column: "Naam",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WinkelLijstProduct_ProductId",
+                schema: "Winkellijst",
+                table: "WinkelLijstProduct",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WinkelLijstProduct_WinkelLijstId",
+                schema: "Winkellijst",
+                table: "WinkelLijstProduct",
+                column: "WinkelLijstId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -390,11 +417,7 @@ namespace Winkellijst_ASP.Migrations
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
-                name: "Boodschappenlijst",
-                schema: "Winkellijst");
-
-            migrationBuilder.DropTable(
-                name: "Product",
+                name: "WinkelLijstProduct",
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
@@ -402,7 +425,11 @@ namespace Winkellijst_ASP.Migrations
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
-                name: "Gebruiker",
+                name: "Product",
+                schema: "Winkellijst");
+
+            migrationBuilder.DropTable(
+                name: "Boodschappenlijst",
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
@@ -410,11 +437,15 @@ namespace Winkellijst_ASP.Migrations
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers",
+                name: "Gebruiker",
                 schema: "Winkellijst");
 
             migrationBuilder.DropTable(
                 name: "Winkel",
+                schema: "Winkellijst");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers",
                 schema: "Winkellijst");
         }
     }

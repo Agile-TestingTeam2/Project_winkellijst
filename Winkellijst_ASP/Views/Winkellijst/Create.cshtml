@@ -4,21 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<div class="container">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <form class="form">
-                <div class="col-lg-12">
-                    <input class="form-control" type="text" placeholder="Zoek hier je product" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Zoek</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<h1>Create</h1>
 
-
-@*<h4>WinkelLijst</h4>
+<h4>WinkelLijst</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -27,10 +15,6 @@
             <div class="form-group">
                 <label asp-for="GebruikerId" class="control-label"></label>
                 <select asp-for="GebruikerId" class ="form-control" asp-items="ViewBag.GebruikerId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="WinkelId" class="control-label"></label>
-                <select asp-for="WinkelId" class ="form-control" asp-items="ViewBag.WinkelId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AanmaakDatum" class="control-label"></label>
@@ -42,10 +26,10 @@
             </div>
         </form>
     </div>
-</div>*@
+</div>
 
 <div>
-    <a class="btn btn-primary btn-lg" role="button" asp-action="Index"> Terug naar Winkellijsten</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

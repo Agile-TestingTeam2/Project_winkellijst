@@ -52,6 +52,15 @@ namespace Winkellijst_ASP.Data
                 .HasIndex(product => product.Naam)
                 .IsUnique();
             modelBuilder.Entity<Product>()
+                .Property(product => product.Prijs)
+                .IsRequired();
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Prijs)
+                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Product>()
+                .Property(product => product.Hoeveelheid)
+                .IsRequired();
+            modelBuilder.Entity<Product>()
                 .Property(product => product.ProductId)
                 .IsRequired();
             #endregion
@@ -80,12 +89,13 @@ namespace Winkellijst_ASP.Data
                 .Property(winkelLijst => winkelLijst.GebruikerId)
                 .IsRequired();
             modelBuilder.Entity<WinkelLijst>()
-                .Property(winkelLijst => winkelLijst.WinkelId)
-                .IsRequired();
-            modelBuilder.Entity<WinkelLijst>()
                 .Property(winkelLijst => winkelLijst.AanmaakDatum)
                 .IsRequired()
                 .HasColumnType("dateTime");
+            #endregion
+            #region WinkelLijstProduct
+            modelBuilder.Entity<WinkelLijstProduct>()
+                .ToTable("WinkelLijstProduct");
             #endregion
         }
     }
