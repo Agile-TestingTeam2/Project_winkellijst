@@ -30,6 +30,9 @@ a {
     padding: 10px;
 }
 
+.alert-heading {
+    color: white;
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */
