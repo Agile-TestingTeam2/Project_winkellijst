@@ -10,23 +10,23 @@ using Winkellijst_ASP.Models;
 
 namespace Winkellijst_ASP.Controllers
 {
-    public class WinkelLijstController : Controller
+    public class ProductController : Controller
     {
         private readonly GebruikerContext _context;
 
-        public WinkelLijstController(GebruikerContext context)
+        public ProductController(GebruikerContext context)
         {
             _context = context;
         }
 
-        // GET: WinkelLijst
+        // GET: Product
         public async Task<IActionResult> Index()
         {
-            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker);
+            var gebruikerContext = _context.Producten.Include(p => p.Afdeling);
             return View(await gebruikerContext.ToListAsync());
         }
 
-        // GET: WinkelLijst/Details/5
+        // GET: Product/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace Winkellijst_ASP.Controllers
                 return NotFound();
             }
 
-            var winkelLijst = await _context.WinkelLijsten
-                .Include(w => w.Gebruiker)
-                .FirstOrDefaultAsync(m => m.WinkelLijstId == id);
-            if (winkelLijst == null)
+            var product = await _context.Producten
+                .Include(p => p.Afdeling)
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return View(winkelLijst);
+            return View(product);
         }
 
-        // GET: WinkelLijst/Create
+        // GET: Product/Create
         public IActionResult Create()
         {
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId");
+            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam");
             return View();
         }
 
-        // POST: WinkelLijst/Create
+        // POST: Product/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WinkelLijstId,GebruikerId,AanmaakDatum")] WinkelLijst winkelLijst)
+        public async Task<IActionResult> Create([Bind("ProductId,Naam,Prijs,Hoeveelheid,AfdelingId")] Product product)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(winkelLijst);
+                _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
-            return View(winkelLijst);
+            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", product.AfdelingId);
+            return View(product);
         }
 
-        // GET: WinkelLijst/Edit/5
+        // GET: Product/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace Winkellijst_ASP.Controllers
                 return NotFound();
             }
 
-            var winkelLijst = await _context.WinkelLijsten.FindAsync(id);
-            if (winkelLijst == null)
+            var product = await _context.Producten.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
-            return View(winkelLijst);
+            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", product.AfdelingId);
+            return View(product);
         }
 
-        // POST: WinkelLijst/Edit/5
+        // POST: Product/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WinkelLijstId,GebruikerId,AanmaakDatum")] WinkelLijst winkelLijst)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Naam,Prijs,Hoeveelheid,AfdelingId")] Product product)
         {
-            if (id != winkelLijst.WinkelLijstId)
+            if (id != product.ProductId)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace Winkellijst_ASP.Controllers
             {
                 try
                 {
-                    _context.Update(winkelLijst);
+                    _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WinkelLijstExists(winkelLijst.WinkelLijstId))
+                    if (!ProductExists(product.ProductId))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace Winkellijst_ASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
-            return View(winkelLijst);
+            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", product.AfdelingId);
+            return View(product);
         }
 
-        // GET: WinkelLijst/Delete/5
+        // GET: Product/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +130,31 @@ namespace Winkellijst_ASP.Controllers
                 return NotFound();
             }
 
-            var winkelLijst = await _context.WinkelLijsten
-                .Include(w => w.Gebruiker)
-                .FirstOrDefaultAsync(m => m.WinkelLijstId == id);
-            if (winkelLijst == null)
+            var product = await _context.Producten
+                .Include(p => p.Afdeling)
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return View(winkelLijst);
+            return View(product);
         }
 
-        // POST: WinkelLijst/Delete/5
+        // POST: Product/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var winkelLijst = await _context.WinkelLijsten.FindAsync(id);
-            _context.WinkelLijsten.Remove(winkelLijst);
+            var product = await _context.Producten.FindAsync(id);
+            _context.Producten.Remove(product);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WinkelLijstExists(int id)
+        private bool ProductExists(int id)
         {
-            return _context.WinkelLijsten.Any(e => e.WinkelLijstId == id);
+            return _context.Producten.Any(e => e.ProductId == id);
         }
     }
 }

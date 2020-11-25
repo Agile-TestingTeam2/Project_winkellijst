@@ -1,24 +1,19 @@
 ﻿@model IEnumerable<Winkellijst_ASP.Models.WinkelLijst>
 
 @{
-    ViewData["Title"] = "Overzicht Winkellijsten";
+    ViewData["Title"] = "Index";
 }
 
+<h1>Index</h1>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <h2 class="alert-heading">Overzicht Winkellijsten</h2>
-    </div>
-</nav>
-
-<table class="table table-hover">
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Gebruiker)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Winkel)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AanmaakDatum)
@@ -27,32 +22,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gebruiker.GebruikerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Winkel.Huisnummer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AanmaakDatum)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.WinkelLijstId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.WinkelLijstId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.WinkelLijstId">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gebruiker.GebruikerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AanmaakDatum)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WinkelLijstId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.WinkelLijstId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.WinkelLijstId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-
-<div class="container"
-     <div class="row align-items-center">
-    <p>
-        <a class="btn btn-primary btn-lg" asp-action="Create" role="button">Maak een nieuwe winkelijst !</a>
-    </p>
-    </div>
-</div>

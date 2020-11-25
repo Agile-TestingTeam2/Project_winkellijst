@@ -5,6 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201120143308_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201120143308_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201125183514_ChangeWinkellijstToHoldProducts.cs" />
+    <Compile Remove="Migrations\20201125183514_ChangeWinkellijstToHoldProducts.Designer.cs" />
+    <Compile Remove="Migrations\20201125183724_ChangeWinkellijstToHoldProducts.cs" />
+    <Compile Remove="Migrations\20201125183724_ChangeWinkellijstToHoldProducts.Designer.cs" />
+    <Compile Remove="Migrations\20201125184429_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201125184429_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201125190637_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201125190637_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
