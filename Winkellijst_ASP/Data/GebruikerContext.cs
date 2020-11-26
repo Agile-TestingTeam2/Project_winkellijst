@@ -58,9 +58,6 @@ namespace Winkellijst_ASP.Data
                 .Property(p => p.Prijs)
                 .HasColumnType("decimal(18,2)");
             modelBuilder.Entity<Product>()
-                .Property(product => product.Hoeveelheid)
-                .IsRequired();
-            modelBuilder.Entity<Product>()
                 .Property(product => product.ProductId)
                 .IsRequired();
             modelBuilder.Entity<Product>()
@@ -99,6 +96,9 @@ namespace Winkellijst_ASP.Data
             #region WinkelLijstProduct
             modelBuilder.Entity<WinkelLijstProduct>()
                 .ToTable("WinkelLijstProduct");
+            modelBuilder.Entity<WinkelLijstProduct>()
+                .Property(product => product.Hoeveelheid)
+                .IsRequired();
             #endregion
         }
     }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Winkellijst_ASP.Data;
 
 namespace Winkellijst_ASP.Migrations
 {
     [DbContext(typeof(GebruikerContext))]
-    partial class GebruikerContextModelSnapshot : ModelSnapshot
+    [Migration("20201126145414_ChangedLocationHoeveelheidFromProductToWinkelLijstProduct")]
+    partial class ChangedLocationHoeveelheidFromProductToWinkelLijstProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

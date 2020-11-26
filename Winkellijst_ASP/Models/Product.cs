@@ -10,7 +10,6 @@ namespace Winkellijst_ASP.Models
         public int ProductId { get; set; }
         public string Naam { get; set; }
         public decimal Prijs { get; set; }
-        public string Hoeveelheid { get; set; }
         public string Beschrijving { get; set; }
         public int AfdelingId { get; set; }
         public Afdeling Afdeling { get; set; }
