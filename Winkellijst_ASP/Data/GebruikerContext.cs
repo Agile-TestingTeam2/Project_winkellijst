@@ -63,6 +63,9 @@ namespace Winkellijst_ASP.Data
             modelBuilder.Entity<Product>()
                 .Property(product => product.ProductId)
                 .IsRequired();
+            modelBuilder.Entity<Product>()
+                .Property(product => product.Beschrijving)
+                .IsRequired();
             #endregion
             #region Winkel
             modelBuilder.Entity<Winkel>()
