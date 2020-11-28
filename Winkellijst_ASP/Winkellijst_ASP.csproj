@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>9e37fc2d-f7fa-4cc7-857f-2a131d9e4fca</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Migrations\20201120143308_InitialCreate.cs" />
     <Compile Remove="Migrations\20201120143308_InitialCreate.Designer.cs" />
@@ -16,7 +16,6 @@
     <Compile Remove="Migrations\20201125190637_InitialCreate.cs" />
     <Compile Remove="Migrations\20201125190637_InitialCreate.Designer.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Font.Awesome" Version="5.15.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
@@ -32,7 +31,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="SendGrid" Version="9.21.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
-
 </Project>
