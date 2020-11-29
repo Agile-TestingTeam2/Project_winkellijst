@@ -60,7 +60,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
                 await _emailSender.SendEmailAsync(
                     Input.Email,
                     "Opnieuw Instellen Wachtwoord",
-                    $"Gelieve om uw wachtwoord opnieuw in te stellen door <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aan te klikken </a>!");
+                    $"Gelieve om uw wachtwoord opnieuw in te stellen door <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'> deze link </a> aan te klikken!");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
