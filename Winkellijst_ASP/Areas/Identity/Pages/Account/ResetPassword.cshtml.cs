@@ -29,17 +29,19 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "E-mail")]
             [EmailAddress]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "Het {0} moet op z'n minst {2} en maximaal {1} karakters lang zijn.", MinimumLength = 6)]
+            [Display(Name = "Wachtwoord")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Bevestig wachtwoord")]
+            [Compare("Password", ErrorMessage = "Het wachtwoord en het validatie wachtwoord stemmen niet overeen.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
@@ -49,7 +51,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
         {
             if (code == null)
             {
-                return BadRequest("A code must be supplied for password reset.");
+                return BadRequest("Een code moet beschikbaar zijn om wachtwoord aan te passen.");
             }
             else
             {
