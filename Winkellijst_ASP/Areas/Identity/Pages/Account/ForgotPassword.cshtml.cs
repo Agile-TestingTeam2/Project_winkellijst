@@ -59,8 +59,8 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Opnieuw Instellen Wachtwoord",
+                    $"Gelieve om uw wachtwoord opnieuw in te stellen door <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aan te klikken </a>!");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

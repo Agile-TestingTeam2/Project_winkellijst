@@ -9,15 +9,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Winkellijst_ASP.Areas.Identity.Data;
 
 namespace Winkellijst_ASP.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppGebruiker> _userManager;
 
-        public ResetPasswordModel(UserManager<IdentityUser> userManager)
+        public ResetPasswordModel(UserManager<AppGebruiker> userManager)
         {
             _userManager = userManager;
         }
