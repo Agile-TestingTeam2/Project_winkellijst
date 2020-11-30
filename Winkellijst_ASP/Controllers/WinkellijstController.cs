@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
+using Winkellijst_ASP.ViewModel;
 
 namespace Winkellijst_ASP.Controllers
 {
@@ -48,8 +49,10 @@ namespace Winkellijst_ASP.Controllers
         // GET: WinkelLijst/Create
         public IActionResult Create()
         {
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId");
-            return View();
+            WinkellijstCreateViewModel viewModel = new WinkellijstCreateViewModel();
+            viewModel.Winkellijst = new WinkelLijst();
+            //ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId");
+            return View(viewModel);
         }
 
         // POST: WinkelLijst/Create
