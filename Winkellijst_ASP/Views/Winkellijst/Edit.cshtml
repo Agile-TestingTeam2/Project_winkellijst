@@ -4,34 +4,32 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
 
-<h4>WinkelLijst</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="WinkelLijstId" />
-            <div class="form-group">
-                <label asp-for="GebruikerId" class="control-label"></label>
-                <select asp-for="GebruikerId" class="form-control" asp-items="ViewBag.GebruikerId"></select>
-                <span asp-validation-for="GebruikerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AanmaakDatum" class="control-label"></label>
-                <input asp-for="AanmaakDatum" class="form-control" />
-                <span asp-validation-for="AanmaakDatum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h3> Bewerk deze winkellijst</h3>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="WinkelLijstId" />
+                <div class="form-group">
+                    <label asp-for="GebruikerId" class="control-label"></label>
+                    <select asp-for="GebruikerId" class="form-control" asp-items="ViewBag.GebruikerId"></select>
+                    <span asp-validation-for="GebruikerId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AanmaakDatum" class="control-label"></label>
+                    <input asp-for="AanmaakDatum" class="form-control" />
+                    <span asp-validation-for="AanmaakDatum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Bewaar" class="btn btn-success" />
+                    <a class="btn btn-primary" asp-action="Index">Terug naar Winkellijst</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

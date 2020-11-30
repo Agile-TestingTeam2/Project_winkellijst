@@ -36,14 +36,14 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userId}'.");
+                return NotFound($"Het is niet gelukt om de gebruiker in te loggen met volgend ID '{userId}'.");
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ChangeEmailAsync(user, email, code);
             if (!result.Succeeded)
             {
-                StatusMessage = "Error changing email.";
+                StatusMessage = "De aanpassing van je e-mail is mislukt !";
                 return Page();
             }
 
@@ -52,12 +52,12 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
             var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
             if (!setUserNameResult.Succeeded)
             {
-                StatusMessage = "Error changing user name.";
+                StatusMessage = "De aanpassing van je gebruikersnaam is mislukt !";
                 return Page();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Thank you for confirming your email change.";
+            StatusMessage = "Bedankt om je e-mailaanpassing te bevestigen!";
             return Page();
         }
     }
