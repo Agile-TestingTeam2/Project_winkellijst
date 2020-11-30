@@ -52,6 +52,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.EmailAddress)]
             [EmailAddress]
             [Display(Name = "E-mail")]
             public string Email { get; set; }
@@ -78,6 +79,10 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (!Input.Email.Contains("."))
+            {
+                ModelState.AddModelError(string.Empty, "E-mailadres is onvolledig.");
+            }
             if (ModelState.IsValid)
             {
                 var user = new AppGebruiker 
@@ -116,9 +121,9 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
                         return RedirectToAction("Index", "Winkellijst");
                     }
                 }
-                foreach (var error in result.Errors)
+                else
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    ModelState.AddModelError(string.Empty, "Registratie is mislukt. Probeer het later nog eens.");
                 }
             }
 
