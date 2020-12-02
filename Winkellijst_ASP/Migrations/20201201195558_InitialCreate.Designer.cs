@@ -10,8 +10,8 @@ using Winkellijst_ASP.Data;
 namespace Winkellijst_ASP.Migrations
 {
     [DbContext(typeof(GebruikerContext))]
-    [Migration("20201125193331_EditedProduct")]
-    partial class EditedProduct
+    [Migration("20201201195558_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -276,7 +276,7 @@ namespace Winkellijst_ASP.Migrations
                     b.Property<int>("AfdelingId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Hoeveelheid")
+                    b.Property<string>("Beschrijving")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -356,6 +356,13 @@ namespace Winkellijst_ASP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Aantal")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

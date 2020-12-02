@@ -10,8 +10,8 @@ using Winkellijst_ASP.Data;
 namespace Winkellijst_ASP.Migrations
 {
     [DbContext(typeof(GebruikerContext))]
-    [Migration("20201125191140_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201201200136_WinkellijstNaam")]
+    partial class WinkellijstNaam
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -276,10 +276,17 @@ namespace Winkellijst_ASP.Migrations
                     b.Property<int>("AfdelingId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Beschrijving")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Naam")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<decimal>("Prijs")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");
 
@@ -336,6 +343,10 @@ namespace Winkellijst_ASP.Migrations
                     b.Property<int>("GebruikerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("WinkelLijstId");
 
                     b.HasIndex("GebruikerId");
@@ -349,6 +360,9 @@ namespace Winkellijst_ASP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Aantal")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

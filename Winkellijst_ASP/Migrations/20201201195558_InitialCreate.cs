@@ -259,6 +259,8 @@ namespace Winkellijst_ASP.Migrations
                     ProductId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Naam = table.Column<string>(maxLength: 255, nullable: false),
+                    Prijs = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Beschrijving = table.Column<string>(nullable: false),
                     AfdelingId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -280,6 +282,8 @@ namespace Winkellijst_ASP.Migrations
                 {
                     WinkelLijstProductId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Naam = table.Column<string>(nullable: false),
+                    Aantal = table.Column<int>(nullable: false),
                     WinkelLijstId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },

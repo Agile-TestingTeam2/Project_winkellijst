@@ -92,12 +92,15 @@ namespace Winkellijst_ASP.Data
                 .Property(winkelLijst => winkelLijst.AanmaakDatum)
                 .IsRequired()
                 .HasColumnType("dateTime");
+            modelBuilder.Entity<WinkelLijst>()
+                .Property(winkelLijst => winkelLijst.Naam)
+                .IsRequired();
             #endregion
             #region WinkelLijstProduct
             modelBuilder.Entity<WinkelLijstProduct>()
                 .ToTable("WinkelLijstProduct");
             modelBuilder.Entity<WinkelLijstProduct>()
-                .Property(product => product.Hoeveelheid)
+                .Property(winkelLijstProduct => winkelLijstProduct.Aantal)
                 .IsRequired();
             #endregion
         }
