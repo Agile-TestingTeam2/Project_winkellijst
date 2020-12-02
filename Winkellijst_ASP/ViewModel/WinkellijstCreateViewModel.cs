@@ -9,7 +9,7 @@ namespace Winkellijst_ASP.ViewModel
     public class WinkellijstCreateViewModel
     {
         public WinkelLijst Winkellijst { get; set; }
-        public Product Product { get; set; }
+        public Product Product { get; set; } // dit moet de Winkellijstproduct zijn
 
     }
 }
