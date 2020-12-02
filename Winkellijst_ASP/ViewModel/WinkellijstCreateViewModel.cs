@@ -10,5 +10,6 @@ namespace Winkellijst_ASP.ViewModel
     {
         public WinkelLijst Winkellijst { get; set; }
         public Product Product { get; set; }
+
     }
 }

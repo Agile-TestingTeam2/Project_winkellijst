@@ -60,7 +60,7 @@ namespace Winkellijst_ASP.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WinkelLijstId,GebruikerId,AanmaakDatum")] WinkelLijst winkelLijst)
+        public async Task<IActionResult> Create([Bind("WinkelLijstId,AanmaakDatum,Producten")] WinkelLijst winkelLijst)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,8 @@ namespace Winkellijst_ASP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
+        
+            //ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
             return View(winkelLijst);
         }
 

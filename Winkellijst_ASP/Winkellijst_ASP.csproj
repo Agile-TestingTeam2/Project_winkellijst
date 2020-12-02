@@ -15,6 +15,16 @@
     <Compile Remove="Migrations\20201125184429_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20201125190637_InitialCreate.cs" />
     <Compile Remove="Migrations\20201125190637_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201125191140_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201125191140_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201125193331_EditedProduct.cs" />
+    <Compile Remove="Migrations\20201125193331_EditedProduct.Designer.cs" />
+    <Compile Remove="Migrations\20201126143312_AddedBeschrijvingInProductAndAantalInWinkellijstProduct.cs" />
+    <Compile Remove="Migrations\20201126143312_AddedBeschrijvingInProductAndAantalInWinkellijstProduct.Designer.cs" />
+    <Compile Remove="Migrations\20201126145414_ChangedLocationHoeveelheidFromProductToWinkelLijstProduct.cs" />
+    <Compile Remove="Migrations\20201126145414_ChangedLocationHoeveelheidFromProductToWinkelLijstProduct.Designer.cs" />
+    <Compile Remove="Migrations\20201201193115_WinkellijstNaam.cs" />
+    <Compile Remove="Migrations\20201201193115_WinkellijstNaam.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
