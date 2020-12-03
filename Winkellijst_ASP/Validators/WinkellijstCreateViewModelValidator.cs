@@ -13,9 +13,7 @@ namespace Winkellijst_ASP.Validators
         {
             RuleFor(wcvm => wcvm.Winkellijst.Naam)
                 .NotEmpty()
-                .NotNull()
                 .WithMessage("Gelieve een naam in te vullen");
-
         }
     }
 }
