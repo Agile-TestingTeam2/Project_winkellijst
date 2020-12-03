@@ -341,6 +341,10 @@ namespace Winkellijst_ASP.Migrations
                     b.Property<int>("GebruikerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("WinkelLijstId");
 
                     b.HasIndex("GebruikerId");
@@ -357,10 +361,6 @@ namespace Winkellijst_ASP.Migrations
 
                     b.Property<int>("Aantal")
                         .HasColumnType("int");
-
-                    b.Property<string>("Hoeveelheid")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

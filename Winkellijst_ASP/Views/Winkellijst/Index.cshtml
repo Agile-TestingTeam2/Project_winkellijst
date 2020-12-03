@@ -17,25 +17,30 @@
                         <th>
                             @Html.DisplayNameFor(model => model.AanmaakDatum)
                         </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.WinkelLijstProducts.Count)
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.WinkelLijstId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AanmaakDatum)
-                            </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@item.WinkelLijstId"><i class="fas fa-book-open"></i> Details</a>|
-                                <a asp-action="Edit" asp-route-id="@item.WinkelLijstId"><i class="fas fa-book-open"></i> Bewerk</a> |
-                                <a asp-action="Delete" asp-route-id="@item.WinkelLijstId"><i class="fas fa-trash-alt"></i> Verwijder</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.WinkelLijstId"> Winkelijst @Html.DisplayFor(modelItem => item.WinkelLijstId)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AanmaakDatum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WinkelLijstProducts.Count)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.WinkelLijstId"><i class="fas fa-book-open"></i> Bewerk</a> |
+                            <a asp-action="Delete" asp-route-id="@item.WinkelLijstId"><i class="fas fa-trash-alt"></i> Verwijder</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -45,5 +50,6 @@
         </div>
     </div>
 </div>
+
 
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
+using Winkellijst_ASP.ViewModel;
 
 namespace Winkellijst_ASP.Controllers
 {
@@ -22,7 +23,7 @@ namespace Winkellijst_ASP.Controllers
         // GET: WinkelLijst
         public async Task<IActionResult> Index()
         {
-            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker);
+            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker).Include(x => x.WinkelLijstProducts);
             return View(await gebruikerContext.ToListAsync());
         }
 
@@ -48,8 +49,10 @@ namespace Winkellijst_ASP.Controllers
         // GET: WinkelLijst/Create
         public IActionResult Create()
         {
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId");
-            return View();
+            WinkellijstCreateViewModel viewModel = new WinkellijstCreateViewModel();
+            viewModel.Winkellijst = new WinkelLijst();
+            //ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId");
+            return View(viewModel);
         }
 
         // POST: WinkelLijst/Create
@@ -57,7 +60,7 @@ namespace Winkellijst_ASP.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WinkelLijstId,GebruikerId,AanmaakDatum")] WinkelLijst winkelLijst)
+        public async Task<IActionResult> Create([Bind("WinkelLijstId,AanmaakDatum,Producten")] WinkelLijst winkelLijst)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +68,8 @@ namespace Winkellijst_ASP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
+        
+            //ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
             return View(winkelLijst);
         }
 

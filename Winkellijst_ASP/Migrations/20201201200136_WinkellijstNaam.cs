@@ -2,19 +2,19 @@
 
 namespace Winkellijst_ASP.Migrations
 {
-    public partial class ChangedLocationHoeveelheidFromProductToWinkelLijstProduct : Migration
+    public partial class WinkellijstNaam : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Hoeveelheid",
+                name: "Naam",
                 schema: "Winkellijst",
-                table: "Product");
+                table: "WinkelLijstProduct");
 
             migrationBuilder.AddColumn<string>(
-                name: "Hoeveelheid",
+                name: "Naam",
                 schema: "Winkellijst",
-                table: "WinkelLijstProduct",
+                table: "Boodschappenlijst",
                 nullable: false,
                 defaultValue: "");
         }
@@ -22,14 +22,14 @@ namespace Winkellijst_ASP.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Hoeveelheid",
+                name: "Naam",
                 schema: "Winkellijst",
-                table: "WinkelLijstProduct");
+                table: "Boodschappenlijst");
 
             migrationBuilder.AddColumn<string>(
-                name: "Hoeveelheid",
+                name: "Naam",
                 schema: "Winkellijst",
-                table: "Product",
+                table: "WinkelLijstProduct",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
