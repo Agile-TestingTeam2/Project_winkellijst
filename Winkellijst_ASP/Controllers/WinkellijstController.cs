@@ -23,7 +23,7 @@ namespace Winkellijst_ASP.Controllers
         // GET: WinkelLijst
         public async Task<IActionResult> Index()
         {
-            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker);
+            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker).Include(x => x.WinkelLijstProducts);
             return View(await gebruikerContext.ToListAsync());
         }
 
