@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Helpers;
+using Winkellijst_ASP.Services;
 using Winkellijst_ASP.Models;
 using Winkellijst_ASP.Validators;
 
@@ -65,6 +67,10 @@ namespace Winkellijst_ASP
                 options.User.RequireUniqueEmail = true;
             });
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            // Add DI for email service
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

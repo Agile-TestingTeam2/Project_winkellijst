@@ -35,12 +35,12 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userId}'.");
+                return NotFound($"Het is niet gelukt om de gebruiker in te loggen met volgend ID '{userId}'.");
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            StatusMessage = result.Succeeded ? "Bedankt om je e-mail te bevestigen !" : "Oops! Het bevestigen van je e-mail is mislukt!";
             return Page();
         }
     }

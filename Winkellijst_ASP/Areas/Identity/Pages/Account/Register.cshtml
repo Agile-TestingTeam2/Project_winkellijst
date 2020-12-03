@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Registreer";
+    ViewData["Title"] = "Registreren";
 }
 
 <div class="container">
@@ -11,7 +11,6 @@
                 <div class="card-body">
                     <form class="form-signin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                         <h5 class="card-title text-center">Registreer je hier !</h5>
-                        <div asp-validation-summary="All" class="text-danger"></div>
                         <label asp-for="Input.Email"></label>
                         <div class="form-label-group">
                             <input asp-for="Input.Email" class="form-control" />
@@ -23,11 +22,12 @@
                             <span asp-validation-for="Input.Wachtwoord" class="text-danger"></span>
                         </div>
                         <label asp-for="Input.BevestigWachtwoord"></label>
-                        <div class="form-label-group">                            
+                        <div class="form-label-group">
                             <input asp-for="Input.BevestigWachtwoord" class="form-control" />
                             <span asp-validation-for="Input.BevestigWachtwoord" class="text-danger"></span>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registreer</button>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registreren</button>
                     </form>
                 </div>
             </div>

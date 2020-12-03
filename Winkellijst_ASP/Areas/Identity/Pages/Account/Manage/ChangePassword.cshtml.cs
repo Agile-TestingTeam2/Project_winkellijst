@@ -37,18 +37,18 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Huidig wachtwoord")]
             public string OldPassword { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "Het {0} moet op zijn minst {2} en maximaal {1} karakers lang zijn.", MinimumLength = 4)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Nieuw wachtwoord")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Bevestig nieuw wachtwoord")]
+            [Compare("NewPassword", ErrorMessage = "Het nieuwe wachtwoord en het validatie wachtwoord stemmen niet overeen.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -57,7 +57,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Het is niet gelukt om de gebruiker te laden met deze ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -79,7 +79,7 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Het is niet gelukt om de gebruiker te laden met deze ID '{_userManager.GetUserId(User)}'.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
@@ -93,8 +93,8 @@ namespace Winkellijst_ASP.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("De gebruiker heeft zijn wachtwoord succesvol aangepast.");
+            StatusMessage = "Uw wactwoord is aangepast.";
 
             return RedirectToPage();
         }
