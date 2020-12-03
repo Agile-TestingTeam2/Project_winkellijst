@@ -22,6 +22,7 @@ using Winkellijst_ASP.Helpers;
 using Winkellijst_ASP.Services;
 using Winkellijst_ASP.Models;
 using Winkellijst_ASP.Validators;
+using Winkellijst_ASP.ViewModel;
 
 namespace Winkellijst_ASP
 {
@@ -41,6 +42,7 @@ namespace Winkellijst_ASP
                 .AddFluentValidation();
             services.AddTransient<IValidator<WinkelLijst>, WinkelLijstValidator>();
             services.AddTransient<IValidator<Product>, ProductValidator>();
+            services.AddTransient<IValidator<ProductViewModel>, ProductViewModelValidator>();
             services.AddDbContext<GebruikerContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GebruikerConnection")));
             services.AddDefaultIdentity<AppGebruiker>()
