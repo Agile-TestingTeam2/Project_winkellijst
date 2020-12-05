@@ -11,6 +11,7 @@ using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
 using Winkellijst_ASP.ViewModel;
+using Winkellijst_ASP.Helpers;
 
 namespace Winkellijst_ASP.Controllers
 {
@@ -18,7 +19,7 @@ namespace Winkellijst_ASP.Controllers
     public class WinkelLijstController : Controller
     {
         private readonly GebruikerContext _context;
-        private UserManager<AppGebruiker> _userManager;
+        private readonly UserManager<AppGebruiker> _userManager;
 
         public WinkelLijstController(GebruikerContext context, UserManager<AppGebruiker> userManager)
         {
@@ -27,10 +28,28 @@ namespace Winkellijst_ASP.Controllers
         }
 
         // GET: WinkelLijst
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker).Include(x => x.WinkelLijstProducts);
-            return View(await gebruikerContext.ToListAsync());
+            try
+            {
+                var userId = _userManager.GetUserId(User);
+                var gebruiker = _context.Gebruikers.Where(gebruiker => gebruiker.AppGebruikerId == userId).FirstOrDefault();
+                var gebruikerId = gebruiker.GebruikerId;
+
+                var list = _context.WinkelLijsten
+                    .Where(w => w.GebruikerId == gebruikerId)
+                    .Include(w => w.Gebruiker)
+                    .Include(w => w.WinkelLijstProducts)
+                    .OrderByDescending(w => w.AanmaakDatum)
+                    .ToList();
+
+                return View(list);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
         // GET: WinkelLijst/Details/5

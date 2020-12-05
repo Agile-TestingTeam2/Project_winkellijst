@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Winkellijst_ASP.Models.WinkelLijstProduct>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2>Mijn Winkellijst</h2>
+
+            <div class="list-group">
+                @foreach (var item in Model)
+                {
+                    <a class="list-group-item list-group-item-action active">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Product.Naam)</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Product.Beschrijving)</p>
+                        <small>@Html.DisplayFor(modelItem => item.Product.Prijs)</small>
+                    </a>
+                }
+                </div>
+            <a class="btn btn-primary" asp-action="Create">Voeg een Product toe</a>
+        </div>
+    </div>
+</div>
+        @*<h1>Mijn Winkellijst</h1>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Aantal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WinkelLijst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Aantal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WinkelLijst.Naam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.Beschrijving)
+                        </td>
+                        <td>
+                            <a asp-action="Create">Create New</a>
+                            <a asp-action="Edit" asp-route-id="@item.WinkelLijstProductId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.WinkelLijstProductId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.WinkelLijstProductId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@

@@ -1,0 +1,21 @@
+﻿@model Winkellijst_ASP.Models.WinkelLijstProduct
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h3>Wil je dit product verwijderen uit deze lijst?</h3>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="WinkelLijstProductId" />
+                <input type="submit" value="Ja" class="btn btn-danger" /> |
+                <a class="btn btn-primary" asp-action="Index">Neen, terug naar lijst</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+            
