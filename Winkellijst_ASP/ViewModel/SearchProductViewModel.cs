@@ -6,8 +6,9 @@ using Winkellijst_ASP.Models;
 
 namespace Winkellijst_ASP.ViewModel
 {
-    public class WinkellijstCreateViewModel
+    public class SearchProductViewModel
     {
-        public WinkelLijst Winkellijst { get; set; }
+        public string ZoekProducten { get; set; }
+        public List<Product> Products { get; set; }
     }
 }
