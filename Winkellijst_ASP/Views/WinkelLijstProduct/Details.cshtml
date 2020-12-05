@@ -14,13 +14,13 @@
                     <a class="list-group-item list-group-item-action active">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">@Html.DisplayFor(model => model.Product.Naam)</h5>
-                            <small>Aantal</small>
+                            <span class="badge badge-primary badge-pill">aantal</span>
                         </div>
                         <p class="mb-1">@Html.DisplayFor(model=> Model.Product.Beschrijving)</p>
                         <small>@Html.DisplayFor(model => model.Product.Prijs)</small>
                     </a>
             </div>
-            <a class="btn btn-primary" asp-action="Index" asp-route-id="@Model.Product">Voeg een Product toe</a>
+            <a class="btn btn-primary" asp-action="Index" asp-route-id="@Model.Product"> + Voeg een Product toe</a>
         </div>
     </div>
 </div>
