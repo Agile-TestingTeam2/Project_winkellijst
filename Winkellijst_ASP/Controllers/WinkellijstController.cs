@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
 using Winkellijst_ASP.ViewModel;
@@ -14,17 +17,34 @@ namespace Winkellijst_ASP.Controllers
     public class WinkelLijstController : Controller
     {
         private readonly GebruikerContext _context;
+        private readonly UserManager<AppGebruiker> _userManager;
 
-        public WinkelLijstController(GebruikerContext context)
+        public WinkelLijstController(
+            GebruikerContext context,
+            UserManager<AppGebruiker> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: WinkelLijst
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker).Include(x => x.WinkelLijstProducts);
-            return View(await gebruikerContext.ToListAsync());
+            try
+            {
+                var userId = _userManager.GetUserId(User);
+                var gebruiker = _context.Gebruikers.Where(gebruiker => gebruiker.AppGebruikerId == userId).FirstOrDefault();
+                var gebruikerId = gebruiker.GebruikerId;
+
+                var gebruikerContext = _context.WinkelLijsten.Where(w => w.GebruikerId == gebruikerId).Include(w => w.Gebruiker).Include(x => x.WinkelLijstProducts);
+
+                return View(await gebruikerContext.ToListAsync());
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
         // GET: WinkelLijst/Details/5
