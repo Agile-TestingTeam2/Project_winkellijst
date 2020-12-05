@@ -11,6 +11,7 @@ using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
 using Winkellijst_ASP.ViewModel;
+using Winkellijst_ASP.Helpers;
 
 namespace Winkellijst_ASP.Controllers
 {
@@ -37,9 +38,14 @@ namespace Winkellijst_ASP.Controllers
                 var gebruiker = _context.Gebruikers.Where(gebruiker => gebruiker.AppGebruikerId == userId).FirstOrDefault();
                 var gebruikerId = gebruiker.GebruikerId;
 
-                var gebruikerContext = _context.WinkelLijsten.Where(w => w.GebruikerId == gebruikerId).Include(w => w.Gebruiker).Include(x => x.WinkelLijstProducts);
+                var list = _context.WinkelLijsten
+                    .Where(w => w.GebruikerId == gebruikerId)
+                    .Include(w => w.Gebruiker)
+                    .Include(w => w.WinkelLijstProducts)
+                    .OrderByDescending(w => w.AanmaakDatum)
+                    .ToList();
 
-                return View(await gebruikerContext.ToListAsync());
+                return View(list);
             }
             catch (Exception ex)
             {

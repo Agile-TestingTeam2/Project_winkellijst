@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Winkellijst_ASP.Models.WinkelLijst>
 
+@using Winkellijst_ASP.Helpers
+
 @{
     ViewData["Title"] = "Mijn Winkellijsten";
 }
@@ -15,10 +17,10 @@
                             Naam
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.AanmaakDatum)
+                            Aanmaakdatum
                         </th>
                         <th>
-                            Aantal Produkten
+                            Aantal producten
                         </th>
                         <th></th>
                     </tr>
@@ -26,21 +28,21 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.WinkelLijstId">@Html.DisplayFor(modelItem => item.Naam)</a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AanmaakDatum)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.WinkelLijstProducts.Count)
-                        </td>
-                        <td>
-                            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.WinkelLijstId"><i class="fas fa-book-open"></i> Bewerk</a> 
-                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.WinkelLijstId"><i class="fas fa-trash-alt"></i> Verwijder</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.WinkelLijstId">@Html.DisplayFor(modelItem => item.Naam)</a>
+                            </td>
+                            <td>
+                                @item.AanmaakDatum.TimeAgo()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WinkelLijstProducts.Count)
+                            </td>
+                            <td class="text-right">
+                                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.WinkelLijstId"><i class="fas fa-book-open"></i> Bewerk</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.WinkelLijstId"><i class="fas fa-trash-alt"></i> Verwijder</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
