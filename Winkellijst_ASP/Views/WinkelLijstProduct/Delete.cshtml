@@ -5,14 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="WinkelLijstProductId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h3>Wil je dit product verwijderen uit deze lijst?</h3>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="WinkelLijstProductId" />
+                <input type="submit" value="Ja" class="btn btn-danger" /> |
+                <a class="btn btn-primary" asp-action="Index">Neen, terug naar lijst</a>
+            </form>
+        </div>
+    </div>
 </div>
+
+            
