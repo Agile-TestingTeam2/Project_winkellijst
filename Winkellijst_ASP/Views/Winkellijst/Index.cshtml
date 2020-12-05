@@ -28,7 +28,7 @@
                     {
                     <tr>
                         <td>
-                            <a asp-action="Details" asp-route-id="@item.WinkelLijstId"> Winkelijst @Html.DisplayFor(modelItem => item.WinkelLijstId)</a>
+                            <a asp-action="Details" asp-route-id="@item.WinkelLijstId">@Html.DisplayFor(modelItem => item.Naam)</a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.AanmaakDatum)
