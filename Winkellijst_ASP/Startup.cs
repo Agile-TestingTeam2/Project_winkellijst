@@ -44,6 +44,7 @@ namespace Winkellijst_ASP
             services.AddTransient<IValidator<Product>, ProductValidator>();
             services.AddTransient<IValidator<ProductViewModel>, ProductViewModelValidator>();
             services.AddTransient<IValidator<WinkellijstCreateViewModel>, WinkellijstCreateViewModelValidator>();
+            services.AddTransient<IValidator<WinkellijstEditViewModel>, WinkellijstEditViewModelValidator>();
             services.AddDbContext<GebruikerContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GebruikerConnection")));
             services.AddDefaultIdentity<AppGebruiker>()
