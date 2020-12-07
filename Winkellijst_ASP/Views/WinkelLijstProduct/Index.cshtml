@@ -1,70 +1,80 @@
-﻿@model IEnumerable<Winkellijst_ASP.Models.WinkelLijstProduct>
+﻿@model Winkellijst_ASP.ViewModel.AddProductsViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Producten toevoegen aan " + Model.List.Naam;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container-fluid">
+    <h1>
+        Producten toevoegen aan
+        <a asp-controller="WinkelLijst" asp-action="Details" asp-route-id="@Model.List.WinkelLijstId">@Model.List.Naam</a>
+    </h1>
+    <form asp-action="Search" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Zoek een product:
+                <input type="hidden" name="listId" value="@Model.List.WinkelLijstId" />
+                <input asp-for="SearchTerm" />
+                <input type="submit" value="Zoeken" class="btn btn-primary" />
+                @if (!string.IsNullOrWhiteSpace(Model.SearchTerm))
+                {
+                    <a asp-action="Index" asp-route-listId="@Model.List.WinkelLijstId">Alle producten tonen</a>
+                }
+            </p>
+        </div>
+    </form>
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
-            <h2>Mijn Winkellijst</h2>
-
-            <div class="list-group">
-                @foreach (var item in Model)
-                {
-                    <a class="list-group-item list-group-item-action active">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Product.Naam)</h5>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Product.Beschrijving)</p>
-                        <small>@Html.DisplayFor(modelItem => item.Product.Prijs)</small>
-                    </a>
-                }
-                </div>
-            <a class="btn btn-primary" asp-action="Create">Voeg een Product toe</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Products[0].Naam)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Products[0].Prijs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Products[0].Beschrijving)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Products[0].Afdeling)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Product product in Model.Products)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => product.Naam)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => product.Prijs)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => product.Beschrijving)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => product.Afdeling.Naam)
+                            </td>
+                            <td>
+                                <form method="post" asp-action="Create" class="form-inline">
+                                    <div class="form-group mr-1">
+                                        <input type="hidden" asp-for="WinkelLijstProduct.WinkelLijstId" value="@Model.List.WinkelLijstId" />
+                                        <input type="hidden" asp-for="WinkelLijstProduct.ProductId" value="@product.ProductId" />
+                                        <label asp-for="WinkelLijstProduct.Aantal" class="sr-only">Aantal</label>
+                                        <input asp-for="WinkelLijstProduct.Aantal" class="form-control" />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" title="Toevoegen">+</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-        @*<h1>Mijn Winkellijst</h1>
-
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Aantal)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.WinkelLijst)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Product)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Aantal)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.WinkelLijst.Naam)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product.Beschrijving)
-                        </td>
-                        <td>
-                            <a asp-action="Create">Create New</a>
-                            <a asp-action="Edit" asp-route-id="@item.WinkelLijstProductId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.WinkelLijstProductId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.WinkelLijstProductId">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@

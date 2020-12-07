@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
+using Winkellijst_ASP.ViewModel;
 
 namespace Winkellijst_ASP.Controllers
 {
@@ -19,11 +20,53 @@ namespace Winkellijst_ASP.Controllers
             _context = context;
         }
 
-        // GET: WinkelLijstProduct
-        public async Task<IActionResult> Index()
+        // GET: WinkelLijstProduct/5
+        public async Task<IActionResult> Index(int? listId)
         {
-            var gebruikerContext = _context.WinkelLijstProduct.Include(w => w.Product).Include(w => w.WinkelLijst);
-            return View(await gebruikerContext.ToListAsync());
+            AddProductsViewModel addProductsViewModel = new AddProductsViewModel();
+            addProductsViewModel.List = await _context.WinkelLijsten.Where(w => w.WinkelLijstId == listId).SingleOrDefaultAsync();
+
+            if (addProductsViewModel.List != null)
+            {
+                addProductsViewModel.Products = await _context.Producten.Include(p => p.Afdeling).ToListAsync();
+                addProductsViewModel.WinkelLijstProduct = new WinkelLijstProduct
+                {
+                    Aantal = 1
+                };
+
+                return View(addProductsViewModel);
+            }
+
+            return NotFound();
+        }
+
+        public async Task<IActionResult> Search(AddProductsViewModel addProductsViewModel, int? listId)
+        {
+            addProductsViewModel.List = await _context.WinkelLijsten.Where(w => w.WinkelLijstId == listId).SingleOrDefaultAsync();
+
+            if (addProductsViewModel.List != null)
+            {
+                if (!string.IsNullOrWhiteSpace(addProductsViewModel.SearchTerm))
+                {
+                    addProductsViewModel.Products = await _context.Producten
+                        .Include(p => p.Afdeling)
+                        .Where(c => c.Naam.Contains(addProductsViewModel.SearchTerm))
+                        .ToListAsync();
+                }
+                else
+                {
+                    addProductsViewModel.Products = await _context.Producten.Include(p => p.Afdeling).ToListAsync();
+                }
+
+                addProductsViewModel.WinkelLijstProduct = new WinkelLijstProduct
+                {
+                    Aantal = 1
+                };
+
+                return View("Index", addProductsViewModel);
+            }
+
+            return NotFound();
         }
 
         // GET: WinkelLijstProduct/Details/5
@@ -65,7 +108,8 @@ namespace Winkellijst_ASP.Controllers
             {
                 _context.Add(winkelLijstProduct);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("Details", "WinkelLijst", new { id = winkelLijstProduct.WinkelLijstId });
             }
             ViewData["ProductId"] = new SelectList(_context.Producten, "ProductId", "Beschrijving", winkelLijstProduct.ProductId);
             ViewData["WinkelLijstId"] = new SelectList(_context.WinkelLijsten, "WinkelLijstId", "Naam", winkelLijstProduct.WinkelLijstId);
