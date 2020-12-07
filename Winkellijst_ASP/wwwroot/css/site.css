@@ -164,12 +164,11 @@ body {
     border-color: #427159;
 }
 
-    .btn-primary:hover {
-        color: #fff;
-        background-color: #365f4a;
-        border-color: #365f4a;
-    }
-
+.btn-primary:hover {
+    color: #fff;
+    background-color: #365f4a;
+    border-color: #365f4a;
+}
 
     /* Fallback for Edge
 -------------------------------------------------- */

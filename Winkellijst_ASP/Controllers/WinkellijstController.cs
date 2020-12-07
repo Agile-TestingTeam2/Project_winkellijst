@@ -2,29 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
 using Winkellijst_ASP.ViewModel;
+using Winkellijst_ASP.Helpers;
 
 namespace Winkellijst_ASP.Controllers
 {
+    [Authorize]
     public class WinkelLijstController : Controller
     {
         private readonly GebruikerContext _context;
+        private readonly UserManager<AppGebruiker> _userManager;
 
-        public WinkelLijstController(GebruikerContext context)
+        public WinkelLijstController(GebruikerContext context, UserManager<AppGebruiker> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: WinkelLijst
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var gebruikerContext = _context.WinkelLijsten.Include(w => w.Gebruiker).Include(x => x.WinkelLijstProducts);
-            return View(await gebruikerContext.ToListAsync());
+            try
+            {
+                var userId = _userManager.GetUserId(User);
+                var gebruiker = _context.Gebruikers.Where(gebruiker => gebruiker.AppGebruikerId == userId).FirstOrDefault();
+                var gebruikerId = gebruiker.GebruikerId;
+
+                var list = _context.WinkelLijsten
+                    .Where(w => w.GebruikerId == gebruikerId)
+                    .Include(w => w.Gebruiker)
+                    .Include(w => w.WinkelLijstProducts)
+                    .OrderByDescending(w => w.AanmaakDatum)
+                    .ToList();
+
+                return View(list);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
         // GET: WinkelLijst/Details/5
@@ -51,7 +76,6 @@ namespace Winkellijst_ASP.Controllers
         {
             WinkellijstCreateViewModel viewModel = new WinkellijstCreateViewModel();
             viewModel.Winkellijst = new WinkelLijst();
-            //ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId");
             return View(viewModel);
         }
 
@@ -60,17 +84,24 @@ namespace Winkellijst_ASP.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WinkelLijstId,AanmaakDatum,Producten")] WinkelLijst winkelLijst)
+        public async Task<IActionResult> Create(WinkellijstCreateViewModel winkellijstCreateViewModel)
         {
-            if (ModelState.IsValid)
+            var userId = _userManager.GetUserId(User);
+            Gebruiker gebruiker = await _context.Gebruikers.FirstOrDefaultAsync(x => x.AppGebruikerId == userId);
+            WinkelLijst winkelLijst = await _context.WinkelLijsten.SingleOrDefaultAsync(x => x.Naam == winkellijstCreateViewModel.Winkellijst.Naam);
+            if (winkelLijst != null)
             {
-                _context.Add(winkelLijst);
+                ModelState.AddModelError(string.Empty, "De naam voor deze winkellijst bestaat al.");
+            }
+            if (ModelState.IsValid && gebruiker != null)
+            {
+                winkellijstCreateViewModel.Winkellijst.GebruikerId = gebruiker.GebruikerId;
+                winkellijstCreateViewModel.Winkellijst.AanmaakDatum = DateTime.Now;
+                _context.Add(winkellijstCreateViewModel.Winkellijst);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-        
-            //ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
-            return View(winkelLijst);
+            return View(winkellijstCreateViewModel);
         }
 
         // GET: WinkelLijst/Edit/5
@@ -86,8 +117,9 @@ namespace Winkellijst_ASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
-            return View(winkelLijst);
+            WinkellijstEditViewModel winkellijstEditViewModel = new WinkellijstEditViewModel();
+            winkellijstEditViewModel.Winkellijst = winkelLijst;
+            return View(winkellijstEditViewModel);
         }
 
         // POST: WinkelLijst/Edit/5
@@ -95,35 +127,35 @@ namespace Winkellijst_ASP.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WinkelLijstId,GebruikerId,AanmaakDatum")] WinkelLijst winkelLijst)
+        public async Task<IActionResult> Edit(int id, WinkellijstEditViewModel winkellijstEditViewModel)
         {
-            if (id != winkelLijst.WinkelLijstId)
+            if (id != winkellijstEditViewModel.Winkellijst.WinkelLijstId)
             {
                 return NotFound();
+            }
+            WinkelLijst controleWinkelLijst = await _context.WinkelLijsten.SingleOrDefaultAsync(x => x.Naam == winkellijstEditViewModel.Winkellijst.Naam);
+            if (controleWinkelLijst != null)
+            {
+                ModelState.AddModelError(string.Empty, "De naam voor deze winkellijst bestaat al.");
             }
 
             if (ModelState.IsValid)
             {
-                try
+                WinkelLijst winkelLijst = await _context.WinkelLijsten.SingleOrDefaultAsync(x => x.WinkelLijstId == id);
+                if (winkelLijst != null)
                 {
+                    winkelLijst.Naam = winkellijstEditViewModel.Winkellijst.Naam;
                     _context.Update(winkelLijst);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!WinkelLijstExists(winkelLijst.WinkelLijstId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ModelState.AddModelError(string.Empty, "Kon uw winkellijst niet bewerken, probeer later nog eens.");
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["GebruikerId"] = new SelectList(_context.Gebruikers, "GebruikerId", "GebruikerId", winkelLijst.GebruikerId);
-            return View(winkelLijst);
+                    
+            return View(winkellijstEditViewModel);
         }
 
         // GET: WinkelLijst/Delete/5

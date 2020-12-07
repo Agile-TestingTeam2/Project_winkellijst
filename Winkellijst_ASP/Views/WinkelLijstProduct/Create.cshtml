@@ -1,0 +1,37 @@
+﻿@model Winkellijst_ASP.Models.WinkelLijstProduct
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <h2>Mijn Winkellijst Aanmaken</h2>
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@Html.DisplayFor(model => model.Product.Naam)</h5>
+                                <small>aantal</small>
+                            </div>
+                            <p class="mb-1">@Html.DisplayFor(model => Model.Product.Beschrijving)</p>
+                            <small>@Html.DisplayFor(model => model.Product.Prijs)</small>
+                        </a>
+                    </div>
+                    <a class="btn btn-success btn-lg" asp-action="Index" asp-route-id="@Model.Product"> + Voeg een Product toe</a>
+                    <input type="submit" value="Bewaar deze lijst" class="btn btn-primary" />
+                </form>
+            </div>
+            <a class="btn btn-dark" asp-action="Index" asp-route-id="@Model.WinkelLijst"> Mijn Winkellijsten</a>
+        </div>
+    </div>
+</div>
+
+
+ @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
