@@ -25,6 +25,7 @@
                 </dd>
             </dl>
             <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.WinkelLijstId">Bewerk</a> 
+            <a class="btn btn-dark" asp-controller="WinkelLijstProduct" asp-action="Index" asp-route-listId="@Model.WinkelLijstId"> + Producten Toevoegen </a>
             <a class="btn btn-primary " asp-action="Index">Terug naar Winkellijst</a>
         </div>
     </div>
