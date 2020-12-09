@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Winkellijst_ASP\Winkellijst_ASP.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>D:\Microsoft\Xamarin\NuGet\nunit\3.12.0\lib\netstandard2.0\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
