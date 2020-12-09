@@ -60,6 +60,8 @@ namespace Winkellijst_ASP.Controllers
 
             var winkelLijst = await _context.WinkelLijsten
                 .Include(w => w.Gebruiker)
+                .Include(w => w.WinkelLijstProducts)
+                .ThenInclude(winkellijstProduct => winkellijstProduct.Product.Afdeling)
                 .FirstOrDefaultAsync(m => m.WinkelLijstId == id);
             if (winkelLijst == null)
             {
