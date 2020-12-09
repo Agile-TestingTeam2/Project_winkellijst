@@ -1,47 +1,46 @@
-﻿@model Winkellijst_ASP.Models.Product
+﻿@model Winkellijst_ASP.ViewModel.ProductViewModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Bewerk Product</h1>
 
-<h4>Product</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ProductId" />
+            <input type="hidden" asp-for="Product.ProductId" />
             <div class="form-group">
-                <label asp-for="Naam" class="control-label"></label>
-                <input asp-for="Naam" class="form-control" />
-                <span asp-validation-for="Naam" class="text-danger"></span>
+                <label asp-for="Product.Naam" class="control-label"></label>
+                <input asp-for="Product.Naam" class="form-control" />
+                <span asp-validation-for="Product.Naam" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Prijs" class="control-label"></label>
-                <input asp-for="Prijs" class="form-control" />
-                <span asp-validation-for="Prijs" class="text-danger"></span>
+                <label asp-for="Product.Prijs" class="control-label"></label>
+                <input asp-for="Product.Prijs" class="form-control" />
+                <span asp-validation-for="Product.Prijs" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Beschrijving" class="control-label"></label>
-                <input asp-for="Beschrijving" class="form-control" />
-                <span asp-validation-for="Beschrijving" class="text-danger"></span>
+                <label asp-for="Product.Beschrijving" class="control-label"></label>
+                <input asp-for="Product.Beschrijving" class="form-control" />
+                <span asp-validation-for="Product.Beschrijving" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AfdelingId" class="control-label"></label>
-                <select asp-for="AfdelingId" class="form-control" asp-items="ViewBag.AfdelingId"></select>
-                <span asp-validation-for="AfdelingId" class="text-danger"></span>
+                <label asp-for="Product.AfdelingId" class="control-label"></label>
+                <select asp-for="Product.AfdelingId" class="form-control" asp-items="Model.Afdeling"></select>
+                <span asp-validation-for="Product.AfdelingId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Bewaar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Terug naar productlijst</a>
 </div>
 
 @section Scripts {

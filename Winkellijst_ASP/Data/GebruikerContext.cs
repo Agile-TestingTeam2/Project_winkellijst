@@ -104,5 +104,6 @@ namespace Winkellijst_ASP.Data
                 .IsRequired();
             #endregion
         }
+        public DbSet<Winkellijst_ASP.Models.WinkelLijstProduct> WinkelLijstProduct { get; set; }
     }
 }

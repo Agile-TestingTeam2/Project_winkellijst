@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +20,9 @@ using Winkellijst_ASP.Areas.Identity.Data;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Helpers;
 using Winkellijst_ASP.Services;
+using Winkellijst_ASP.Models;
+using Winkellijst_ASP.Validators;
+using Winkellijst_ASP.ViewModel;
 
 namespace Winkellijst_ASP
 {
@@ -33,7 +38,13 @@ namespace Winkellijst_ASP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation();
+            services.AddTransient<IValidator<WinkelLijst>, WinkelLijstValidator>();
+            services.AddTransient<IValidator<Product>, ProductValidator>();
+            services.AddTransient<IValidator<ProductViewModel>, ProductViewModelValidator>();
+            services.AddTransient<IValidator<WinkellijstCreateViewModel>, WinkellijstCreateViewModelValidator>();
+            services.AddTransient<IValidator<WinkellijstEditViewModel>, WinkellijstEditViewModelValidator>();
             services.AddDbContext<GebruikerContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("GebruikerConnection")));
             services.AddDefaultIdentity<AppGebruiker>()
@@ -72,6 +83,7 @@ namespace Winkellijst_ASP
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -92,6 +104,11 @@ namespace Winkellijst_ASP
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "alternative",
+                    pattern: "{controller=AddProducts}/{id?}/{action=Index}");
+
                 endpoints.MapRazorPages();
             });
         }

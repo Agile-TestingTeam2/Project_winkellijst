@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
+using Winkellijst_ASP.ViewModel;
 
 namespace Winkellijst_ASP.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly GebruikerContext _context;
@@ -22,8 +25,24 @@ namespace Winkellijst_ASP.Controllers
         // GET: Product
         public async Task<IActionResult> Index()
         {
-            var gebruikerContext = _context.Producten.Include(p => p.Afdeling);
-            return View(await gebruikerContext.ToListAsync());
+            SearchProductViewModel searchProductViewModel = new SearchProductViewModel();
+            searchProductViewModel.Products = await _context.Producten.Include(p => p.Afdeling).ToListAsync();
+            return View(searchProductViewModel);
+        }
+        //GET: Searchfilter
+
+        public async Task<IActionResult> Search(SearchProductViewModel searchProductViewModel)
+        {
+            if (!string.IsNullOrEmpty(searchProductViewModel.ZoekProducten))
+            {
+                searchProductViewModel.Products = await _context.Producten.Include(p => p.Afdeling)
+                    .Where(c => c.Naam.Contains(searchProductViewModel.ZoekProducten)).ToListAsync();
+            }
+            else
+            {
+                searchProductViewModel.Products = await _context.Producten.Include(p => p.Afdeling).ToListAsync();
+            }
+            return View("Index", searchProductViewModel);
         }
 
         // GET: Product/Details/5
@@ -48,8 +67,10 @@ namespace Winkellijst_ASP.Controllers
         // GET: Product/Create
         public IActionResult Create()
         {
-            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam");
-            return View();
+            ProductViewModel productViewModel = new ProductViewModel();
+            productViewModel.Product = new Product();
+            productViewModel.Afdeling = new SelectList(_context.Afdelingen, "AfdelingId", "Naam");
+            return View(productViewModel);
         }
 
         // POST: Product/Create
@@ -57,16 +78,16 @@ namespace Winkellijst_ASP.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Naam,Prijs,Beschrijving,AfdelingId")] Product product)
+        public async Task<IActionResult> Create(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(productViewModel.Product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", product.AfdelingId);
-            return View(product);
+            productViewModel.Afdeling = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", productViewModel.Product.AfdelingId);
+            return View(productViewModel);
         }
 
         // GET: Product/Edit/5
@@ -82,8 +103,10 @@ namespace Winkellijst_ASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", product.AfdelingId);
-            return View(product);
+            ProductViewModel productViewModel = new ProductViewModel();
+            productViewModel.Product = product;
+            productViewModel.Afdeling = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", product.AfdelingId);
+            return View(productViewModel);
         }
 
         // POST: Product/Edit/5
@@ -91,35 +114,22 @@ namespace Winkellijst_ASP.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Naam,Prijs,Beschrijving,AfdelingId")] Product product)
+        public async Task<IActionResult> Edit(int id, ProductViewModel productViewModel)
         {
-            if (id != product.ProductId)
+            if (id != productViewModel.Product.ProductId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.ProductId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(productViewModel.Product);
+                await _context.SaveChangesAsync();
+               
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AfdelingId"] = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", product.AfdelingId);
-            return View(product);
+            productViewModel.Afdeling = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", productViewModel.Product.AfdelingId);
+            return View(productViewModel);
         }
 
         // GET: Product/Delete/5
