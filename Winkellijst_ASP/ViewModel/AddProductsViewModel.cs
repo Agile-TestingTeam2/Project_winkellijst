@@ -8,7 +8,7 @@ namespace Winkellijst_ASP.ViewModel
 {
     public class AddProductsViewModel
     {
-        public string SearchTerm { get; set; }
+        public string q { get; set; }
         public List<Product> Products { get; set; }
         public WinkelLijst List { get; set; }
         public WinkelLijstProduct WinkelLijstProduct { get; set; }
