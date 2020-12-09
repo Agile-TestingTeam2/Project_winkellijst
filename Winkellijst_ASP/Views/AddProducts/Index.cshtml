@@ -5,27 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid">
-    <h1>
-        Producten toevoegen aan
-        <a asp-controller="WinkelLijst" asp-action="Details" asp-route-id="@Model.List.WinkelLijstId">@Model.List.Naam</a>
-    </h1>
-    <form asp-action="Search" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Zoek een product:
-                <input type="hidden" name="id" value="@Model.List.WinkelLijstId" />
-                <input asp-for="q" />
-                <input type="submit" value="Zoeken" class="btn btn-primary" />
-                @if (!string.IsNullOrWhiteSpace(Model.q))
-                {
-                    <a asp-action="Index" asp-route-id="@Model.List.WinkelLijstId">Alle producten tonen</a>
-                }
-            </p>
-        </div>
-    </form>
+<div class="container">
     <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
+            <h3>
+                Producten toevoegen aan
+                <a asp-controller="WinkelLijst" asp-action="Details" asp-route-id="@Model.List.WinkelLijstId">@Model.List.Naam</a>
+            </h3>
+            <hr />
+            <form asp-action="Search" method="get">
+                <div class="form-actions no-color">
+                    <p>
+                        Zoek een product:
+                        <input type="hidden" name="id" value="@Model.List.WinkelLijstId" />
+                        <input asp-for="q" />
+                        <input type="submit" value="Zoeken" class="btn btn-primary" />
+                        @if (!string.IsNullOrWhiteSpace(Model.q))
+                        {
+                            <a asp-action="Index" asp-route-id="@Model.List.WinkelLijstId">Alle producten tonen</a>
+                        }
+                    </p>
+                </div>
+            </form>
             <table class="table">
                 <thead>
                     <tr>
