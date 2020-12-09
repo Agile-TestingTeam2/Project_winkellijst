@@ -83,6 +83,7 @@ namespace Winkellijst_ASP
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -103,6 +104,11 @@ namespace Winkellijst_ASP
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "alternative",
+                    pattern: "{controller=AddProducts}/{id?}/{action=Index}");
+
                 endpoints.MapRazorPages();
             });
         }
