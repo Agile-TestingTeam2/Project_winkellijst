@@ -28,25 +28,23 @@ namespace Winkellijst_ASP.Controllers
         }
 
         // GET: WinkelLijst
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             try
             {
                 var userId = _userManager.GetUserId(User);
-                var gebruiker = _context.Gebruikers.Where(gebruiker => gebruiker.AppGebruikerId == userId).FirstOrDefault();
-                var gebruikerId = gebruiker.GebruikerId;
+                var gebruiker = await _context.Gebruikers.Where(g => g.AppGebruikerId == userId).FirstOrDefaultAsync();
 
-                var list = _context.WinkelLijsten
-                    .Where(w => w.GebruikerId == gebruikerId)
+                var list = await _context.WinkelLijsten
+                    .Where(w => w.GebruikerId == gebruiker.GebruikerId)
                     .Include(w => w.Gebruiker)
                     .Include(w => w.WinkelLijstProducts)
                     .OrderByDescending(w => w.AanmaakDatum)
-                    .ToList();
+                    .ToListAsync();
 
                 return View(list);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return NotFound();
             }
