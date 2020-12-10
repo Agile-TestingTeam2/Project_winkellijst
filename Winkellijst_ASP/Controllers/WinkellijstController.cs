@@ -88,7 +88,7 @@ namespace Winkellijst_ASP.Controllers
         {
             var userId = _userManager.GetUserId(User);
             Gebruiker gebruiker = await _context.Gebruikers.FirstOrDefaultAsync(x => x.AppGebruikerId == userId);
-            WinkelLijst winkelLijst = await _context.WinkelLijsten.SingleOrDefaultAsync(x => x.Naam == winkellijstCreateViewModel.Winkellijst.Naam);
+            WinkelLijst winkelLijst = await _context.WinkelLijsten.SingleOrDefaultAsync(x => x.Naam == winkellijstCreateViewModel.Winkellijst.Naam && x.GebruikerId == gebruiker.GebruikerId);
             if (winkelLijst != null)
             {
                 ModelState.AddModelError(string.Empty, "De naam voor deze winkellijst bestaat al.");
@@ -133,8 +133,8 @@ namespace Winkellijst_ASP.Controllers
             {
                 return NotFound();
             }
-            WinkelLijst controleWinkelLijst = await _context.WinkelLijsten.SingleOrDefaultAsync(x => x.Naam == winkellijstEditViewModel.Winkellijst.Naam);
-            if (controleWinkelLijst != null)
+            WinkelLijst controleWinkelLijst = await _context.WinkelLijsten.SingleOrDefaultAsync(x => x.Naam == winkellijstEditViewModel.Winkellijst.Naam && x.GebruikerId == winkellijstEditViewModel.Winkellijst.GebruikerId);
+            if (controleWinkelLijst != null )
             {
                 ModelState.AddModelError(string.Empty, "De naam voor deze winkellijst bestaat al.");
             }

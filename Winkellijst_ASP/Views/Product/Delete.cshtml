@@ -4,45 +4,39 @@
     ViewData["Title"] = "Delete";
 }
 
-<div class="container-fluid">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <p class="text-center">Bent u zeker dat u dit wil verwijderen?</p>
-            <div>
-                <hr />
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Naam)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Naam)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Prijs)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Prijs)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Beschrijving)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Beschrijving)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.Afdeling)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Afdeling.Naam)
-                    </dd>
-                </dl>
+<p class="text-center">Bent u zeker dat u dit wil verwijderen?</p>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prijs)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prijs)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beschrijving)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beschrijving)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Afdeling)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Afdeling.Naam)
+        </dd>
+    </dl>
 
-                <form asp-action="Delete">
-                    <input type="hidden" asp-for="ProductId" />
-                    <input type="submit" value="Verwijder" class="btn btn-danger" /> |
-                    <a asp-action="Index">Terug naar productlijst</a>
-                </form>
-            </div>
-        </div>
-    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ProductId" />
+        <input type="submit" value="Verwijder" class="btn btn-danger" /> |
+        <a asp-action="Index">Terug naar productlijst</a>
+    </form>
 </div>
