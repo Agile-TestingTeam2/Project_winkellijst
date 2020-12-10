@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 using Winkellijst_ASP.Data;
 using Winkellijst_ASP.Models;
 using Winkellijst_ASP.ViewModel;
@@ -29,6 +27,7 @@ namespace Winkellijst_ASP.Controllers
             searchProductViewModel.Products = await _context.Producten.Include(p => p.Afdeling).ToListAsync();
             return View(searchProductViewModel);
         }
+
         //GET: Searchfilter
 
         public async Task<IActionResult> Search(SearchProductViewModel searchProductViewModel)
@@ -45,25 +44,6 @@ namespace Winkellijst_ASP.Controllers
             return View("Index", searchProductViewModel);
         }
 
-        // GET: Product/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Producten
-                .Include(p => p.Afdeling)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
-
         // GET: Product/Create
         public IActionResult Create()
         {
@@ -74,13 +54,18 @@ namespace Winkellijst_ASP.Controllers
         }
 
         // POST: Product/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductViewModel productViewModel)
         {
-            if (ModelState.IsValid)
+            Product productNaam = await _context.Producten.FirstOrDefaultAsync(x => x.Naam == productViewModel.Product.Naam);
+            if (productNaam != null)
+            {
+                ModelState.AddModelError(string.Empty, "Deze productnaam bestaat al");
+            }
+            else if (ModelState.IsValid)
             {
                 _context.Add(productViewModel.Product);
                 await _context.SaveChangesAsync();
@@ -110,7 +95,7 @@ namespace Winkellijst_ASP.Controllers
         }
 
         // POST: Product/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -120,12 +105,16 @@ namespace Winkellijst_ASP.Controllers
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            Product productNaam = await _context.Producten.Where(x => x.Naam == productViewModel.Product.Naam && x.ProductId != id).FirstOrDefaultAsync();
+            if (productNaam != null)
+            {
+                ModelState.AddModelError(string.Empty, "Deze productnaam bestaat al");
+            }
+            else if (ModelState.IsValid)
             {
                 _context.Update(productViewModel.Product);
                 await _context.SaveChangesAsync();
-               
+
                 return RedirectToAction(nameof(Index));
             }
             productViewModel.Afdeling = new SelectList(_context.Afdelingen, "AfdelingId", "Naam", productViewModel.Product.AfdelingId);

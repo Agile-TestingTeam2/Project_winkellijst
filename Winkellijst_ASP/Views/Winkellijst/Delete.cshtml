@@ -4,21 +4,13 @@
     ViewData["Title"] = "Delete";
 }
 
-<div class="container">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-            <h3> Wilt u deze deze lijst verwijderen ?</h3>
+<h3> Wilt u deze deze lijst verwijderen ?</h3>
 
-
-            <form asp-action="Delete">
-                <input type="hidden" asp-for="WinkelLijstId" />
-                <div class="form-group">
-                    <p>Naam: @Html.DisplayFor(modelItem => modelItem.Naam)</p>
-                </div>
-                <input type="submit" value="Ja" class="btn btn-danger" />
-                <button class="btn btn-primary" asp-action="Index">Neen, Terug naar Winkellijst</button>
-            </form>
-        </div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="WinkelLijstId" />
+    <div class="form-group">
+        <p>Naam: @Html.DisplayFor(modelItem => modelItem.Naam)</p>
     </div>
-</div>
-
+    <input type="submit" value="Ja" class="btn btn-danger" />
+    <button class="btn btn-primary" asp-action="Index">Neen, Terug naar Winkellijst</button>
+</form>
