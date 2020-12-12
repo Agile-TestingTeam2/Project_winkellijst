@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Winkellijst_ASP.Models;
 
 namespace Winkellijst_ASP.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,7 +19,6 @@ namespace Winkellijst_ASP.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -28,6 +29,11 @@ namespace Winkellijst_ASP.Controllers
             return View();
         }
 
+        /*public IActionResult Mailing()
+        {
+            return View()
+        }
+*/
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
